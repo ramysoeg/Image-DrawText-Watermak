@@ -1,0 +1,12 @@
+#content {
+  position: absolute;
+  top: 0px;
+  left:0px;
+  width: 541px;
+  height: 506px;
+  background-color: #000056;
+  overflow: auto;
+}
+#image {
+  width: 300px;
+}
