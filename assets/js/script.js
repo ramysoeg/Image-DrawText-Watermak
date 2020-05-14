@@ -24,8 +24,8 @@ function DrawCanvas(blop, fisrtLineText, secondLineText) {
 
   img.src = blop;
   img.onload = function() {
-    $(c).attr("width", this.width);
-    $(c).attr("height", this.height);
+    c.setAttribute("width", this.width);
+    c.setAttribute("height", this.height);
     const fontSize = this.width / 100 * 3;
     ctx.drawImage(img, 0, 0, this.width, this.height);
     ctx.font = fontSize + "px Arial";
@@ -38,7 +38,7 @@ function DrawCanvas(blop, fisrtLineText, secondLineText) {
     ctx.fillText(secondLineText, 0, (fontSize * 2));
 
     const dataURL = c.toDataURL();
-    $("#image").attr("src", dataURL);
+    document.getElementById("image").setAttribute("src", dataURL);
   }
 }
 
