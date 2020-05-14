@@ -1,9 +1,9 @@
 #content {
   position: absolute;
   top: 0px;
-  left:0px;
-  width: 541px;
-  height: 506px;
+  left:5vw;
+  width: 90vw;
+  height: 100vw;
   background-color: #000056;
   overflow: auto;
 }

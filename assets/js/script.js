@@ -5,9 +5,14 @@ const image = new Image();
 const today = new Date();
 const fontColor = "#FFF";
 
-function DrawImage(fisrtLineText, secondLineText) {
+let texts = [];
+
+function DrawImage() {
+    if (arguments.length > 0) {
+        texts = arguments;
+    }
 	GetImage(imgUrl).then(function(blob) {
-      DrawCanvas(URL.createObjectURL(blob), fisrtLineText, secondLineText);
+      DrawCanvas(URL.createObjectURL(blob));
     });
 }
 async function GetImage(imgUrl) {
@@ -17,7 +22,7 @@ async function GetImage(imgUrl) {
     })
 }
 
-function DrawCanvas(blop, fisrtLineText, secondLineText) {
+function DrawCanvas(blop) {
   const img = new Image();
   const c = document.createElement("canvas");
   const ctx = c.getContext("2d");
@@ -34,15 +39,13 @@ function DrawCanvas(blop, fisrtLineText, secondLineText) {
     ctx.shadowOffsetY = 2;
     ctx.shadowBlur = 3;
     ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-    ctx.fillText(fisrtLineText, 0, fontSize);
-    ctx.fillText(secondLineText, 0, (fontSize * 2));
+
+    Array.from(texts).map((t, i) => {
+        const topMargin = fontSize * (i + 1);
+        ctx.fillText(t, 0, topMargin);
+    });
 
     const dataURL = c.toDataURL();
     document.getElementById("image").setAttribute("src", dataURL);
   }
 }
-
-DrawImage(today.toLocaleString("pt-BR", {
-    	timeZone: 'America/Sao_Paulo'
-    }),
-    "Second line of information");
